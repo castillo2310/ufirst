@@ -1,6 +1,6 @@
 FROM php:8.2-fpm-alpine
 
-WORKDIR "/app"
+WORKDIR "/backend"
 
 RUN apk add --no-cache \
       acl \

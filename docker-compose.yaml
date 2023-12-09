@@ -7,8 +7,7 @@ services:
       context: ./backend
     restart: unless-stopped
     volumes:
-      - ./backend:/app
-      - php_socket:/var/run/php
+      - ./backend:/backend
 
   webserver:
     container_name: webserver
