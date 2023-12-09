@@ -4,7 +4,7 @@ namespace ufirst\Log\Domain;
 
 use ufirst\Shared\Domain\StringValueObject;
 
-readonly class RequestProtocol extends StringValueObject
+enum RequestProtocol: string
 {
-
+    case HTTP1 = 'HTTP/1.0';
 }

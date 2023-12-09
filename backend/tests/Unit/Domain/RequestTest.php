@@ -19,7 +19,50 @@ class RequestTest extends TestCase
         $assertRequest = new Request(
             RequestMethod::GET,
             new RequestUrl('/Consumer.html'),
-            new RequestProtocol('HTTP/1.0')
+            RequestProtocol::HTTP1
+        );
+
+        $this->assertEquals($assertRequest, $request);
+    }
+
+    public function testShouldReturnRequestWhenNoMethodAndNoProtocol(): void
+    {
+        $lineString = '"cons/circle_logo_small.gif"';
+
+        $request = Request::fromLogString($lineString);
+
+        $assertRequest = new Request(
+            null,
+            new RequestUrl('cons/circle_logo_small.gif'),
+            null
+        );
+
+        $this->assertEquals($assertRequest, $request);
+    }
+    public function testShouldReturnRequestWhenUrlHasBlankSpacesAndNoProtocol(): void
+    {
+        $lineString = '"GET /docs/Access/chapter6/s6-2.html>Andrew W. Breidenbach Environmental"';
+
+        $request = Request::fromLogString($lineString);
+
+        $assertRequest = new Request(
+            RequestMethod::GET,
+            new RequestUrl('/docs/Access/chapter6/s6-2.html>Andrew W. Breidenbach Environmental'),
+            null
+        );
+
+        $this->assertEquals($assertRequest, $request);
+    }
+    public function testShouldReturnRequestWhenNoProtocol(): void
+    {
+        $lineString = '"GET /icons/circle_logo_small.gif"';
+
+        $request = Request::fromLogString($lineString);
+
+        $assertRequest = new Request(
+            RequestMethod::GET,
+            new RequestUrl('/icons/circle_logo_small.gif'),
+            null
         );
 
         $this->assertEquals($assertRequest, $request);
