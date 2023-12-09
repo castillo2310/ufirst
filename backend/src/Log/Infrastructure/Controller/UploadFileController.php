@@ -23,6 +23,6 @@ final class UploadFileController extends AbstractController
     {
         $this->uploadFileService->__invoke($uploadFileDTO);
 
-        return $this->json(null, Response::HTTP_OK);
+        return $this->json([], Response::HTTP_OK);
     }
 }
