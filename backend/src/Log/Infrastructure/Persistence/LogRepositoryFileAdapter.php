@@ -29,7 +29,7 @@ final class LogRepositoryFileAdapter implements LogRepository
     public function save(Log $log): void
     {
         try {
-            $data = $this->serializer->serialize($log, 'json');
+            $data = $this->serializer->serialize($log, 'json', ['json_encode_options' => JSON_UNESCAPED_SLASHES]);
             $prefix = $this->isFirstEntry ? '' : ',';
             $this->isFirstEntry = false;
 
