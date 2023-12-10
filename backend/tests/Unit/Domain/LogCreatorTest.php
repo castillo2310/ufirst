@@ -88,11 +88,20 @@ class LogCreatorTest extends TestCase
         $this->assertEquals($assertLog, $log);
     }
 
-    public function testShouldThrowLogCreatorExceptionWhenException()
+    public function testShouldThrowLogCreatorExceptionWhenException(): void
     {
         $this->expectException(LogCreatorException::class);
         
         $lineString = '[30:15:17:13] "ogos/us-flag.gif" 400';
+
+        $log = $this->logCreator->fromLine($lineString);
+    }
+
+    public function testShouldThrowLogCreatorExceptionWhenLineIsEmpty(): void
+    {
+        $this->expectException(LogCreatorException::class);
+
+        $lineString = '';
 
         $log = $this->logCreator->fromLine($lineString);
     }
