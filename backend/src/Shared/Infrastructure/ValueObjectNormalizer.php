@@ -5,12 +5,8 @@ namespace ufirst\Shared\Infrastructure;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 use ufirst\Shared\Domain\ValueObject;
 
-/**
- * @method array getSupportedTypes(?string $format)
- */
 class ValueObjectNormalizer implements NormalizerInterface
 {
-
     public function normalize(mixed $object, string $format = null, array $context = [])
     {
         return $object->getValue();

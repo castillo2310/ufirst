@@ -29,6 +29,9 @@ services:
             $filePath: '%app.log.file_path%'
 
     ufirst\Shared\Infrastructure\ValueObjectNormalizer:
-        tags: [ 'serializer.normalizer' ]
+        tags: [ 'serializer.normalizer']
+
+    ufirst\Shared\Infrastructure\LogDateTimeNormalizer:
+        tags: [ 'serializer.normalizer']
 
 
