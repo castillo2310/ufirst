@@ -12,6 +12,7 @@ use ufirst\Log\Domain\LogDateTime;
 use ufirst\Log\Domain\Request;
 use ufirst\Log\Domain\RequestMethod;
 use ufirst\Log\Domain\RequestProtocol;
+use ufirst\Log\Domain\RequestProtocolVersion;
 use ufirst\Log\Domain\RequestUrl;
 use ufirst\Log\Domain\ResponseCode;
 
@@ -37,7 +38,8 @@ class LogCreatorTest extends TestCase
             new Request(
                 RequestMethod::GET,
                 new RequestUrl('/Consumer.html'),
-                RequestProtocol::HTTP1,
+                RequestProtocol::HTTP,
+                RequestProtocolVersion::ONE
             ),
             new ResponseCode(200),
             new DocumentSize(1325)
@@ -59,6 +61,7 @@ class LogCreatorTest extends TestCase
                 RequestMethod::GET,
                 new RequestUrl('/docs/Access/chapter6/s5-2.html>Library Services Office,'),
                 null,
+                null
             ),
             new ResponseCode(404),
             null
@@ -80,6 +83,7 @@ class LogCreatorTest extends TestCase
                 null,
                 new RequestUrl('ogos/us-flag.gif'),
                 null,
+                null
             ),
             new ResponseCode(400),
             null

@@ -8,6 +8,7 @@ class Request
         private ?RequestMethod $method,
         private RequestUrl $url,
         private ?RequestProtocol $protocol,
+        private ?RequestProtocolVersion $protocolVersion,
     )
     {
     }
@@ -17,7 +18,7 @@ class Request
         $string = trim($logString, '"');
         $data = explode(' ', $string);
 
-        $method = $protocol = null;
+        $method = $protocol = $protocolVersion = null;
         if (sizeof($data) === 1) {
             $url = new RequestUrl($data[0]);
         } elseif (sizeof($data) === 2) {
@@ -25,8 +26,16 @@ class Request
             $url = new RequestUrl($data[1]);
         } else {
             $method = RequestMethod::from($data[0]);
-            $protocol = RequestProtocol::tryFrom($data[sizeof($data) - 1]);
-
+            
+            $rawProtocol = $data[sizeof($data) - 1];
+            if (!empty($rawProtocol)) {
+                $protocolData = explode('/', $rawProtocol);
+                if (sizeof($protocolData) === 2) {
+                    $protocol = RequestProtocol::tryFrom($protocolData[0]);
+                    $protocolVersion = RequestProtocolVersion::tryFrom($protocolData[1]);
+                }
+            }
+            
             $length = is_null($protocol) ? null : sizeof($data) - 2;
             $rawUrl = implode(' ', array_slice($data, 1, $length));
 
@@ -36,7 +45,8 @@ class Request
         return new self(
             $method,
             $url,
-            $protocol
+            $protocol,
+            $protocolVersion
         );
     }
 

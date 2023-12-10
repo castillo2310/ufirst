@@ -6,5 +6,5 @@ use ufirst\Shared\Domain\StringValueObject;
 
 enum RequestProtocol: string
 {
-    case HTTP1 = 'HTTP/1.0';
+    case HTTP = 'HTTP';
 }

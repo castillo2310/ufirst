@@ -14,7 +14,7 @@ class HostTest extends TestCase
 
         $host = new Host($lineString);
 
-        $this->assertEquals($lineString, $host->value());
+        $this->assertEquals($lineString, $host->getValue());
     }
 
     public function testShouldReturnCorrectHostWhenIpAddress(): void
@@ -23,7 +23,7 @@ class HostTest extends TestCase
 
         $host = new Host($lineString);
 
-        $this->assertEquals($lineString, $host->value());
+        $this->assertEquals($lineString, $host->getValue());
     }
 
     public function testShouldThrowExceptionWhenInvalidIpAddress(): void

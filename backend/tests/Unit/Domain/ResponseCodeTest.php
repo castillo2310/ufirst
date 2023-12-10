@@ -13,7 +13,7 @@ class ResponseCodeTest extends TestCase
         $code = 200;
         $responseCode = new ResponseCode($code);
         
-        $this->assertEquals($code, $responseCode->value());
+        $this->assertEquals($code, $responseCode->getValue());
     }
 
     public function testShouldThrowExceptionIfResponseCodeIsNotValid(): void

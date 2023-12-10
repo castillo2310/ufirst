@@ -6,6 +6,7 @@ use PHPUnit\Framework\TestCase;
 use ufirst\Log\Domain\Request;
 use ufirst\Log\Domain\RequestMethod;
 use ufirst\Log\Domain\RequestProtocol;
+use ufirst\Log\Domain\RequestProtocolVersion;
 use ufirst\Log\Domain\RequestUrl;
 
 class RequestTest extends TestCase
@@ -19,7 +20,8 @@ class RequestTest extends TestCase
         $assertRequest = new Request(
             RequestMethod::GET,
             new RequestUrl('/Consumer.html'),
-            RequestProtocol::HTTP1
+            RequestProtocol::HTTP,
+            RequestProtocolVersion::ONE
         );
 
         $this->assertEquals($assertRequest, $request);
@@ -34,6 +36,7 @@ class RequestTest extends TestCase
         $assertRequest = new Request(
             null,
             new RequestUrl('cons/circle_logo_small.gif'),
+            null,
             null
         );
 
@@ -48,6 +51,7 @@ class RequestTest extends TestCase
         $assertRequest = new Request(
             RequestMethod::GET,
             new RequestUrl('/docs/Access/chapter6/s6-2.html>Andrew W. Breidenbach Environmental'),
+            null,
             null
         );
 
@@ -62,6 +66,7 @@ class RequestTest extends TestCase
         $assertRequest = new Request(
             RequestMethod::GET,
             new RequestUrl('/icons/circle_logo_small.gif'),
+            null,
             null
         );
 
