@@ -28,4 +28,7 @@ services:
         arguments:
             $filePath: '%app.log.file_path%'
 
+    ufirst\Shared\Infrastructure\ValueObjectNormalizer:
+        tags: [ 'serializer.normalizer' ]
+
 

@@ -2,7 +2,7 @@
 
 namespace ufirst\Shared\Domain;
 
-abstract readonly class IntegerValueObject
+abstract readonly class IntegerValueObject implements ValueObject
 {
     public function __construct(
         protected int $value
@@ -10,7 +10,7 @@ abstract readonly class IntegerValueObject
     {
     }
 
-    public function value(): int
+    public function getValue(): int
     {
         return $this->value;
     }

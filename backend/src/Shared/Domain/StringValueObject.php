@@ -3,7 +3,7 @@
 namespace ufirst\Shared\Domain;
 
 
-abstract readonly class StringValueObject
+abstract readonly class StringValueObject implements ValueObject
 {
     public function __construct(
         protected string $value
@@ -11,7 +11,7 @@ abstract readonly class StringValueObject
     {
     }
 
-    public function value(): string
+    public function getValue(): string
     {
         return $this->value;
     }
