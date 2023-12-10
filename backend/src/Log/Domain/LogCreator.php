@@ -6,7 +6,7 @@ use ufirst\Log\Domain\Exception\RequestDataNotFoundException;
 
 class LogCreator
 {
-    public static function byLine(string $line): Log
+    public function fromLine(string $line): Log
     {
         $data = explode(' ', $line);
 

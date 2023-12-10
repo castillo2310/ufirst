@@ -17,11 +17,18 @@ use ufirst\Log\Domain\ResponseCode;
 
 class LogCreatorTest extends TestCase
 {
+    private LogCreator $logCreator;
+    
+    protected function setUp(): void
+    {
+        $this->logCreator = new LogCreator();
+    }
+
     public function testShouldReturnCompleteLog(): void
     {
         $lineString = 'query2.lycos.cs.cmu.edu [29:23:53:36] "GET /Consumer.html HTTP/1.0" 200 1325';
 
-        $log = LogCreator::byLine($lineString);
+        $log = $this->logCreator->fromLine($lineString);
 
         $assertLog = new Log(
             new Host('query2.lycos.cs.cmu.edu'),
@@ -42,7 +49,7 @@ class LogCreatorTest extends TestCase
     {
         $lineString = 'lab7.pc.fsu.edu [30:13:52:03] "GET /docs/Access/chapter6/s5-2.html>Library Services Office," 404 -';
 
-        $log = LogCreator::byLine($lineString);
+        $log = $this->logCreator->fromLine($lineString);
 
         $assertLog = new Log(
             new Host('lab7.pc.fsu.edu'),
@@ -63,7 +70,7 @@ class LogCreatorTest extends TestCase
     {
         $lineString = 'willard-ibmpc12.cac-labs.psu.edu [30:15:17:13] "ogos/us-flag.gif" 400';
 
-        $log = LogCreator::byLine($lineString);
+        $log = $this->logCreator->fromLine($lineString);
 
         $assertLog = new Log(
             new Host('willard-ibmpc12.cac-labs.psu.edu'),
