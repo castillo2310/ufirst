@@ -4,6 +4,7 @@ namespace ufirst\tests\Unit\Domain;
 
 use PHPUnit\Framework\TestCase;
 use ufirst\Log\Domain\DocumentSize;
+use ufirst\Log\Domain\Exception\LogCreatorException;
 use ufirst\Log\Domain\Host;
 use ufirst\Log\Domain\Log;
 use ufirst\Log\Domain\LogCreator;
@@ -85,5 +86,14 @@ class LogCreatorTest extends TestCase
         );
 
         $this->assertEquals($assertLog, $log);
+    }
+
+    public function testShouldThrowLogCreatorExceptionWhenException()
+    {
+        $this->expectException(LogCreatorException::class);
+        
+        $lineString = '[30:15:17:13] "ogos/us-flag.gif" 400';
+
+        $log = $this->logCreator->fromLine($lineString);
     }
 }
