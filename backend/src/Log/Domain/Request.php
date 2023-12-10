@@ -26,7 +26,7 @@ class Request
             $url = new RequestUrl($data[1]);
         } else {
             $method = RequestMethod::from($data[0]);
-            
+
             $rawProtocol = $data[sizeof($data) - 1];
             if (!empty($rawProtocol)) {
                 $protocolData = explode('/', $rawProtocol);
@@ -35,7 +35,7 @@ class Request
                     $protocolVersion = RequestProtocolVersion::tryFrom($protocolData[1]);
                 }
             }
-            
+
             $length = is_null($protocol) ? null : sizeof($data) - 2;
             $rawUrl = implode(' ', array_slice($data, 1, $length));
 
@@ -63,5 +63,10 @@ class Request
     public function getProtocol(): ?RequestProtocol
     {
         return $this->protocol;
+    }
+
+    public function getProtocolVersion(): ?RequestProtocolVersion
+    {
+        return $this->protocolVersion;
     }
 }
