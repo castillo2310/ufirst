@@ -25,6 +25,7 @@ final readonly class CreateLogService
                 $log = $this->logCreator->fromLine($line);
                 $this->logRepository->save($log);
             }
+            $this->logRepository->finalize();
         } finally {
             $this->inputFileReader->close();
         }
