@@ -26,11 +26,11 @@ class HostTest extends TestCase
         $this->assertEquals($lineString, $host->getValue());
     }
 
-    public function testShouldThrowExceptionWhenInvalidIpAddress(): void
+    public function testShouldThrowExceptionWhenInvalidHostname(): void
     {
         $this->expectException(HostInvalidFormatException::class);
 
-        $lineString = '140.112.68_3';
+        $lineString = 'test..com';
 
         $host = new Host($lineString);
     }

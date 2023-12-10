@@ -17,7 +17,7 @@ readonly class ResponseCode extends IntegerValueObject
     private function validate(int $value): void
     {
         if ($value < 100 || $value > 599) {
-            throw new ResponseCodeInvalidException();
+            throw new ResponseCodeInvalidException("Invalid response code $value");
         }
     }
 }

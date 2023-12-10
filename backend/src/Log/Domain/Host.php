@@ -17,10 +17,10 @@ readonly class Host extends StringValueObject
 
     private function validate(string $value): void
     {
-        if (filter_var($value, FILTER_VALIDATE_DOMAIN, FILTER_FLAG_HOSTNAME) !== false) {
+        if (filter_var($value, FILTER_VALIDATE_DOMAIN) !== false) {
             return;
         }
 
-        throw new HostInvalidFormatException();
+        throw new HostInvalidFormatException("Invalid host $value");
     }
 }
