@@ -39,4 +39,19 @@ class Request
             $protocol
         );
     }
+
+    public function getMethod(): ?RequestMethod
+    {
+        return $this->method;
+    }
+
+    public function getUrl(): RequestUrl
+    {
+        return $this->url;
+    }
+
+    public function getProtocol(): ?RequestProtocol
+    {
+        return $this->protocol;
+    }
 }
