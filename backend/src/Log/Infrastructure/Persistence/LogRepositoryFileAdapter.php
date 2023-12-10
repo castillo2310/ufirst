@@ -2,10 +2,10 @@
 
 namespace ufirst\Log\Infrastructure\Persistence;
 
-use Symfony\Component\Serializer\SerializerInterface;
 use ufirst\Log\Domain\Exception\LogRepositoryException;
 use ufirst\Log\Domain\Log;
 use ufirst\Log\Domain\LogRepository;
+use ufirst\Shared\Domain\JsonSerializer;
 
 final class LogRepositoryFileAdapter implements LogRepository
 {
@@ -13,7 +13,7 @@ final class LogRepositoryFileAdapter implements LogRepository
 
     public function __construct(
         private readonly string $filePath,
-        private readonly SerializerInterface $serializer
+        private readonly JsonSerializer $serializer
     )
     {
         $this->initFile();
@@ -29,7 +29,7 @@ final class LogRepositoryFileAdapter implements LogRepository
     public function save(Log $log): void
     {
         try {
-            $data = $this->serializer->serialize($log, 'json', ['json_encode_options' => JSON_UNESCAPED_SLASHES]);
+            $data = $this->serializer->serialize($log);
             $prefix = $this->isFirstEntry ? '' : ',';
             $this->isFirstEntry = false;
 
