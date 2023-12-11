@@ -21,6 +21,7 @@ final readonly class CreateLogService
         try {
             $this->inputFileReader->open($createLogDTO->content);
 
+            $this->logRepository->initialize();
             while ($line = $this->inputFileReader->readLine()) {
                 $log = $this->logCreator->fromLine($line);
                 $this->logRepository->save($log);

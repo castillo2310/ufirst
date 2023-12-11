@@ -11,7 +11,7 @@ use ufirst\Log\Application\CreateLog\CreateLogDTO;
 use ufirst\Log\Application\CreateLog\CreateLogService;
 
 
-#[Route('/log', name: 'log_file_upload', methods: ['PUT'])]
+#[Route('/log', name: 'log_create', methods: ['PUT'])]
 final class CreateLogController extends AbstractController
 {
     public function __construct(private readonly CreateLogService $createLogService)
@@ -24,6 +24,6 @@ final class CreateLogController extends AbstractController
     {
         $this->createLogService->__invoke($createLogDTO);
 
-        return $this->json([], Response::HTTP_OK);
+        return $this->json([]);
     }
 }

@@ -16,14 +16,6 @@ final class LogRepositoryFileAdapter implements LogRepository
         private readonly JsonSerializer $serializer
     )
     {
-        $this->initFile();
-    }
-
-    private function initFile(): void
-    {
-        if (file_exists($this->filePath)) {
-            file_put_contents($this->filePath, '[');
-        }
     }
 
     public function save(Log $log): void
@@ -41,6 +33,28 @@ final class LogRepositoryFileAdapter implements LogRepository
 
     public function finalize(): void
     {
-        file_put_contents($this->filePath, ']', FILE_APPEND);
+        try {
+            file_put_contents($this->filePath, ']', FILE_APPEND);
+        } catch (\Exception $exception) {
+            throw new LogRepositoryException($exception->getMessage());
+        }
+    }
+
+    public function get(): string
+    {
+        try {
+            return file_get_contents($this->filePath);
+        } catch (\Exception $exception) {
+            throw new LogRepositoryException($exception->getMessage());
+        }
+    }
+
+    public function initialize(): void
+    {
+        try {
+            file_put_contents($this->filePath, '[');
+        } catch (\Exception $exception) {
+            throw new LogRepositoryException($exception->getMessage());
+        }
     }
 }

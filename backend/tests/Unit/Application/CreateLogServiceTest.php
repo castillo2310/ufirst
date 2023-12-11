@@ -41,6 +41,10 @@ class CreateLogServiceTest extends TestCase
             ->expects($this->once())
             ->method('open');
 
+        $this->logRepository
+            ->expects($this->once())
+            ->method('initialize');
+
         $this->inputFileReader
             ->expects($this->exactly(3))
             ->method('readLine')
@@ -70,6 +74,10 @@ class CreateLogServiceTest extends TestCase
             ->method('open')
             ->willThrowException(new InputFileReaderException());
 
+        $this->logRepository
+            ->expects($this->never())
+            ->method('initialize');
+
         $this->inputFileReader
             ->expects($this->never())
             ->method('readLine');
@@ -96,6 +104,10 @@ class CreateLogServiceTest extends TestCase
         $this->inputFileReader
             ->expects($this->once())
             ->method('open');
+
+        $this->logRepository
+            ->expects($this->once())
+            ->method('initialize');
 
         $this->inputFileReader
             ->expects($this->once())
@@ -125,6 +137,10 @@ class CreateLogServiceTest extends TestCase
         $this->inputFileReader
             ->expects($this->once())
             ->method('open');
+
+        $this->logRepository
+            ->expects($this->once())
+            ->method('initialize');
 
         $this->inputFileReader
             ->expects($this->once())
