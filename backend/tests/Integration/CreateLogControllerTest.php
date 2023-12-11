@@ -24,4 +24,38 @@ class CreateLogControllerTest extends WebTestCase
 
         $this->assertResponseStatusCodeSame(Response::HTTP_OK);
     }
+
+    public function testShouldThrowExceptionWhenContentIsNull(): void
+    {
+        $client = $this->createClient();
+        $client->request(
+            self::METHOD,
+            self::ROUTE,
+            [
+                'content' => null
+            ]
+        );
+
+        $this->assertResponseStatusCodeSame(Response::HTTP_BAD_REQUEST);
+    }
+
+    public function testShouldThrowExceptionWhenContentIsEmpty(): void
+    {
+        $client = $this->createClient();
+        $client->request(
+            self::METHOD,
+            self::ROUTE,
+            [
+                'content' => ''
+            ]
+        );
+
+        $this->assertResponseStatusCodeSame(Response::HTTP_BAD_REQUEST);
+
+        $response = json_decode($client->getResponse()->getContent(), true);
+
+        $this->assertEquals([
+            'message' => 'Content field should not be empty.'
+        ], $response);
+    }
 }
