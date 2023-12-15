@@ -20,6 +20,12 @@ services:
     restart: unless-stopped
     ports:
       - "8099:80"
-
-volumes:
-  php_socket:
+  frontend:
+    container_name: frontend
+    build:
+      context: ./frontend
+    ports:
+      - "3080:3000"
+    depends_on:
+      - backend
+    restart: unless-stopped
