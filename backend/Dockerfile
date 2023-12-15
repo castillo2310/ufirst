@@ -16,4 +16,8 @@ RUN apk add --no-cache --virtual .build-deps $PHPIZE_DEPS \
 
 COPY ./docker/app.dev.ini $PHP_INI_DIR/conf.d/
 
-COPY --from=composer/composer:2-bin /composer /usr/bin/composer
+COPY . .
+
+COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
+ENV COMPOSER_ALLOW_SUPERUSER=1
+RUN composer install --optimize-autoloader
