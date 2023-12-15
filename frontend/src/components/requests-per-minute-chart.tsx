@@ -44,7 +44,7 @@ export default function RequestsPerMinuteChart({ logs }: { logs: Array<Log> }) {
 
 
     const data = generateData(logs);
-    const options = {
+    const options: any = {
         responsive: true,
         maintainAspectRatio: false,
         plugins: {
