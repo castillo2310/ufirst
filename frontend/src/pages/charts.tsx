@@ -53,9 +53,9 @@ export default function Charts() {
 
           <div className="text-center mt-4">
             <Link href="/upload">
-              <a className="text-blue-600 hover:text-blue-800 transition duration-300">
+              <div className="text-blue-600 hover:text-blue-800 transition duration-300">
                 Upload another file
-              </a>
+              </div>
             </Link>
           </div>
 
