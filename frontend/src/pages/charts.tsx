@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
+import Link from 'next/link';
 
-import { Log } from '@/app/log';
+
 import MethodsDistributionChart from '@/components/methods-distribution-chart';
 import ResponseCodeDistributionChart from '@/components/response-code-distribution-chart';
 import RequestsPerMinuteChart from '@/components/requests-per-minute-chart';
@@ -47,7 +48,15 @@ export default function Charts() {
             </div>
           </div>
 
+          <div className="text-center mt-4">
+            <Link href="/upload">
+              <a className="text-blue-600 hover:text-blue-800 transition duration-300">
+                Upload another file
+              </a>
+            </Link>
+          </div>
+
         </div>  
       </main>
-      )
+    )
 }
