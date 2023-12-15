@@ -12,8 +12,11 @@ export default function Charts() {
     const [data, setData] = useState(null);
     const [isLoading, setLoading] = useState(true)
 
+    const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
+    const url = apiBaseUrl+'/log';
+
     useEffect(() => {
-      fetch('http://localhost:8099/log')
+      fetch(url)
         .then((res) => res.json())
         .then((data) => {
           setData(data)

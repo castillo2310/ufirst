@@ -6,6 +6,9 @@ export default function Upload() {
     const [file, setFile] = useState<File | null>();
     const router = useRouter();
 
+    const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
+    const url = apiBaseUrl+'/log';
+
     async function base64EncodeFile(file: File): Promise<string> {
         return new Promise((resolve, reject) => {
             const reader = new FileReader();
@@ -33,9 +36,8 @@ export default function Upload() {
             setIsLoading(true);
 
             const encodedFile = await base64EncodeFile(file);
-            console.log({encodedFile});
 
-            const response = await fetch('http://localhost:8099/log', {
+            const response = await fetch(url, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json'
